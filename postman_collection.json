@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "Users, Projects & Tasks API",
+    "description": "Task 2 — Innovation Hacks Full Stack Internship. Set the `baseUrl` collection variable (default http://localhost:4000/api).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4000/api" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        { "name": "Health check", "request": { "method": "GET", "url": "{{baseUrl}}/health" } }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        { "name": "List users", "request": { "method": "GET", "url": "{{baseUrl}}/users" } },
+        { "name": "Get user by id", "request": { "method": "GET", "url": "{{baseUrl}}/users/u1" } },
+        {
+          "name": "Create user",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/users",
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"New Member\",\n  \"email\": \"member@devboard.dev\",\n  \"role\": \"Engineer\",\n  \"avatarColor\": \"#10b981\"\n}" }
+          }
+        },
+        {
+          "name": "Update user",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/users/u1",
+            "body": { "mode": "raw", "raw": "{\n  \"role\": \"Lead Engineer\"\n}" }
+          }
+        },
+        { "name": "Delete user", "request": { "method": "DELETE", "url": "{{baseUrl}}/users/u1" } }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        { "name": "List projects", "request": { "method": "GET", "url": "{{baseUrl}}/projects" } },
+        { "name": "List projects (filter)", "request": { "method": "GET", "url": "{{baseUrl}}/projects?status=active&search=payments" } },
+        { "name": "Get project by id", "request": { "method": "GET", "url": "{{baseUrl}}/projects/p1" } },
+        { "name": "Get project tasks", "request": { "method": "GET", "url": "{{baseUrl}}/projects/p1/tasks" } },
+        {
+          "name": "Create project",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/projects",
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Realtime Notifications\",\n  \"description\": \"Websocket-based notification service\",\n  \"status\": \"active\",\n  \"members\": [\"u1\", \"u3\"]\n}" }
+          }
+        },
+        {
+          "name": "Update project",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/projects/p1",
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"on-hold\"\n}" }
+          }
+        },
+        { "name": "Delete project", "request": { "method": "DELETE", "url": "{{baseUrl}}/projects/p1" } }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        { "name": "List tasks", "request": { "method": "GET", "url": "{{baseUrl}}/tasks" } },
+        { "name": "List tasks (filter)", "request": { "method": "GET", "url": "{{baseUrl}}/tasks?status=in-progress&priority=high" } },
+        { "name": "Get task by id", "request": { "method": "GET", "url": "{{baseUrl}}/tasks/t1" } },
+        {
+          "name": "Create task",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/tasks",
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Add rate limiting\",\n  \"description\": \"Protect write endpoints\",\n  \"projectId\": \"p2\",\n  \"assigneeId\": \"u3\",\n  \"priority\": \"high\",\n  \"dueDate\": \"2026-09-15\"\n}" }
+          }
+        },
+        {
+          "name": "Update task",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/tasks/t1",
+            "body": { "mode": "raw", "raw": "{\n  \"priority\": \"medium\"\n}" }
+          }
+        },
+        {
+          "name": "Update task status",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/tasks/t1/status",
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"done\"\n}" }
+          }
+        },
+        { "name": "Delete task", "request": { "method": "DELETE", "url": "{{baseUrl}}/tasks/t1" } }
+      ]
+    }
+  ]
+}
