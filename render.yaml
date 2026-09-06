@@ -1,0 +1,16 @@
+# Render.com Blueprint — one-click deploy for this API.
+# In the Render dashboard: New → Blueprint → connect this repo. Render reads
+# this file, builds, and starts the service. PORT is injected automatically.
+services:
+  - type: web
+    name: users-projects-tasks-api
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: "*"
